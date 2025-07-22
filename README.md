@@ -1,121 +1,121 @@
-This repository contains embedded systems projects and programs developed using the PIC16F877A microcontroller. It includes modules and drivers for GPIO, ADC, PWM, Timers, UART, I²C, SPI, and more. The goal is to provide reusable, modular code for academic and prototyping purposes using MPLAB X IDE and the XC8 compiler.
+PIC16F877A Embedded Systems Repository Overview
+This repository offers a comprehensive collection of embedded systems projects, drivers, and reusable code modules developed for the PIC16F877A microcontroller using MPLAB X IDE and the XC8 compiler. The main objective is to help students and engineers quickly implement and prototype a wide range of functionality with modular, well-documented code.
 
-Target Microcontroller: PIC16F877A
-The PIC16F877A is an 8-bit RISC microcontroller from Microchip, widely used for control, sensing, and automation applications.
+**1.** **Target Microcontroller: PIC16F877A**
+PIC16F877A is a robust 8-bit microcontroller based on the Harvard RISC architecture and is widely used in academic, prototyping, control, and automation applications.
 
-Core Architecture
-8-bit Harvard RISC Architecture
+Key Specifications:
 
-14-bit instruction width
+Program Memory: 8 KB Flash (8192 x 14 bits)
 
-Program Memory: 8 KB (Flash)
+Data Memory: 368 bytes SRAM, 256 bytes EEPROM
 
-Data Memory: 368 Bytes (SRAM)
+Instruction Set: 35 single-word instructions, 14-bit width
 
-EEPROM: 256 Bytes (on-chip)
+Speed: Up to 20 MHz (200 ns instruction cycle)
 
-Operating Speed: Up to 20 MHz
+I/O Pins: 40-pin package with 33 programmable pins across 5 ports (A–E)
 
-Instruction Cycle: 4 clock cycles
+Operating Voltage: 4.0–5.5V
 
-GPIO Overview
-33 Programmable I/O Pins
+Special Features: In-Circuit Serial Programming (ICSP), watchdog timer, power-up timer, brown-out reset, and selectable oscillator options.
 
-5 Ports: PORTA, PORTB, PORTC, PORTD, PORTE
+**2. Core Architecture**
+8-bit Harvard RISC CPU: Efficient and faster execution with separate program/data spaces.
 
-PORTA and PORTE support analog input
+14-bit Instruction Width: Supports up to 8K instructions.
 
-PORTB supports interrupt-on-change
+4-Clock Instruction Cycle: Ensures quick program execution.
 
-TRIS registers control direction (input/output)
+Self-Programming & ICSP: Allows firmware updates and debugging directly on hardware.
 
-Capable of sourcing/sinking up to 25 mA per pin
+**3. Memory Organization**
+Memory Type	Size	Purpose
+Program (Flash)	8 KB (8192x14)	Store user code
+Data (SRAM)	368 bytes	Runtime variables/task data
+EEPROM	256 bytes	Non-volatile parameter storage
 
- Configuration Details
-Supports High-Speed (HS) or RC Oscillator
 
-Watchdog Timer, Power-up Timer, and Brown-out Reset options
+**4. GPIO Overview**
+Total I/O Pins: 33 (across PORTA, PORTB, PORTC, PORTD, PORTE)
 
-Low-Voltage Programming (LVP) can be disabled
+Port	Features
+PORTA/E	Analog input support
+PORTB	Interrupt-on-change, on-chip pull-ups
+All Ports	Controlled via TRIS registers, can source/sink up to 25 mA
+TRIS Registers: Set pin direction (input/output)
 
-Configuration bits are defined via pragma statements in code
+Interrupt-on-Change: PORTB, enables edge or level-triggered logic
 
-External crystal (commonly 4/8/16 MHz) recommended for stable timing
+Pull-Up Resistors: Integrated on PORTB pins for compact switching circuitry.
 
- Peripheral Modules
-GPIO (General Purpose I/O)
-Digital input/output control
+**5. Peripheral Modules and Drivers**
+The repository contains reusable modules and drivers for:
 
-Pull-up resistors on PORTB
+GPIO: Digital I/O control, PORT, LAT, TRIS access
 
-Interrupt-on-change (RB0)
+ADC: 10-bit, 8 channels, programmable voltage reference — for sensing and analog inputs
 
-ADC (Analog-to-Digital Converter)
-10-bit resolution
+PWM (CCP1/CCP2): Two 10-bit resolution channels for motor control, dimming, etc.; requires Timer2.
 
-8 selectable analog channels
+Timers:
 
-Voltage reference configurable
+Timer0: 8-bit, basic delays/counters
 
-Used for sensors and analog signal input
+Timer1: 16-bit, supports external clock source
 
-PWM (Pulse Width Modulation)
-Two PWM modules: CCP1 and CCP2
+Timer2: 8-bit, for PWM, periodic interrupts
 
-10-bit resolution
+UART (USART): Full-duplex asynchronous comms, supports configurable baud rate, available on RC6 & RC7 for debugging/serial modules
 
-Useful for motor control, LED dimming, etc.
+I²C (MSSP): Master/Slave, SCL(RC3), SDA(RC4); used for connecting deeper hardware like EEPROMs, RTCs, sensors
 
-Timer2 is used to generate PWM frequency
+SPI (MSSP): Master/Slave, high-speed synchronous communication; SCK/SDI/SDO on PORTC for fast data transfer.
 
-Timers
-Timer0: 8-bit, used for delays and counters
+Other Key Features: Brown-out reset, power saving modes, low-voltage programming.
 
-Timer1: 16-bit, supports external clock
+**6. Tools & Development Environment
+All examples and libraries are designed for:
 
-Timer2: 8-bit, used for PWM generation
+MPLAB X IDE (project creation, editing, debugging)
 
-All timers support interrupts
+XC8 Compiler (ANSI C support for code portability)
 
-UART (USART)
-Full-duplex asynchronous serial communication
+Simulation: Proteus for circuit testing
 
-TX and RX available on RC6 and RC7
+Hardware Programming: PICkit 2/3, or bootloader (for direct hex loading)
 
-Configurable baud rate
+**7. Use Cases & Application Examples**
+The repository includes:
 
-Used for debugging, serial terminals, and interfacing with modules
+Code examples: GPIO, ADC, PWM, UART, I²C, SPI, and more.
 
-I²C (Inter-Integrated Circuit)
-Supports Master/Slave mode
+Complete projects: Sensor interfacing, display control, motor drivers, communication, etc.
 
-SCL (RC3) and SDA (RC4)
+Libraries: Abstractions for modular design.
 
-Used to interface with EEPROM, RTC, sensors, etc.
+Documentation: Datasheets, tutorials, and circuit explanations, typically with schematic references for fast prototyping.
 
-SPI (Serial Peripheral Interface)
-Full-duplex synchronous communication
+Contribution-ready: Open for enhancements and user submissions.
 
-Master/Slave operation
+**8. Getting Started**
+Clone/Download: Obtain the repository and select your project or module.
 
-SCK, SDI, and SDO on PORTC
+Open Project: In MPLAB X IDE, ensure you select PIC16F877A as the device.
 
-Useful for high-speed data transfer with external peripherals
-Tools Used
-MPLAB X IDE – Project creation and debugging
+Configure Fuses/Bits: Confirm #pragma configs for oscillator, brown-out, etc.
 
-XC8 Compiler – C language compilation
+Build & Flash: Compile using XC8, program with PICkit/bootloader.
 
-Proteus / MPLAB SIM – Simulation
+Test: Simulate in Proteus or use on actual hardware for validation.
 
-PICkit 2/3 or Bootloader – Programming the MCU
-Open the desired project in MPLAB X IDE
+**9. Applications
+Industrial automation
 
-Select the correct device: PIC16F877A
+Home/IoT sensing and control
 
-Verify the configuration settings
+Educational projects
 
-Build and program the hex file into your MCU
+Communication and display systems.
 
-Use Proteus or real hardware to test the system
-
+For more example projects, code snippets, and technical documentation, refer to the repository’s resources and community contributions
